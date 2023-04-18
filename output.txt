@@ -1,0 +1,75 @@
+```
+➜  ~/Workspaces/sandbox/repro-swift-lambda-nsfilecoordinator swift build
+Compiling plugin AWSLambdaPackager...
+Building for debugging...
+Build complete! (0.12s)
+➜  ~/Workspaces/sandbox/repro-swift-lambda-nsfilecoordinator swift package --disable-sandbox archive
+-------------------------------------------------------------------------
+building "repro-swift-lambda-nsfilecoordinator" in docker
+-------------------------------------------------------------------------
+updating "swift:amazonlinux2" docker image
+  amazonlinux2: Pulling from library/swift
+  Digest: sha256:5b0cbe56e35210fa90365ba3a4db9cd2b284a5b74d959fc1ee56a13e9c35b378
+Status: Image is up to date for swift:amazonlinux2
+  docker.io/library/swift:amazonlinux2
+building "MyLambda"
+  Building for production...
+  [0/24] Compiling CNIODarwin shim.c
+  [1/24] Compiling CNIOWindows shim.c
+  [2/24] Compiling _AtomicsShims.c
+  remark: Incremental compilation has been disabled: it is not compatible with whole module optimization
+  remark: Incremental compilation has been disabled: it is not compatible with whole module optimization
+  [3/24] Compiling CBacktrace sort.c
+  [4/24] Compiling CBacktrace simple.c
+  [5/24] Compiling CBacktrace state.c
+  [6/24] Compiling CBacktrace print.c
+  [7/26] Compiling CNIOWindows WSAStartup.c
+  remark: Incremental compilation has been disabled: it is not compatible with whole module optimization
+  remark: Incremental compilation has been disabled: it is not compatible with whole module optimization
+  [8/26] Compiling CNIOLinux liburing_shims.c
+  [9/28] Compiling CNIOLinux shim.c
+  [10/28] Compiling CNIOLLHTTP c_nio_http.c
+  [11/28] Compiling c-nioatomics.c
+  [12/28] Compiling CNIOLLHTTP c_nio_api.c
+  [13/28] Compiling c-atomics.c
+  [14/28] Compiling CBacktrace posix.c
+  [15/28] Compiling CBacktrace mmapio.c
+  remark: Incremental compilation has been disabled: it is not compatible with whole module optimization
+  [16/28] Compiling CBacktrace mmap.c
+  [17/29] Compiling CBacktrace fileline.c
+  [18/29] Compiling CNIOLLHTTP c_nio_llhttp.c
+  [19/29] Compiling CBacktrace backtrace.c
+  [21/29] Compiling _NIODataStructures Heap.swift
+  [23/30] Compiling DequeModule Compatibility.swift
+  [23/31] Compiling CBacktrace elf.c
+[23/31] Compiling CBacktrace atomic.c
+  [26/31] Compiling CBacktrace dwarf.c
+  remark: Incremental compilation has been disabled: it is not compatible with whole module optimization
+  [28/32] Compiling NIOConcurrencyHelpers NIOAtomic.swift
+  [29/33] Compiling Backtrace Backtrace.swift
+  [32/34] Compiling Logging Locks.swift
+  [34/35] Compiling Atomics AtomicInteger.swift
+  remark: Incremental compilation has been disabled: it is not compatible with whole module optimization
+  [36/37] Compiling NIOCore AddressedEnvelope.swift
+  remark: Incremental compilation has been disabled: it is not compatible with whole module optimization
+  remark: Incremental compilation has been disabled: it is not compatible with whole module optimization
+  [38/40] Compiling NIOEmbedded AsyncTestingChannel.swift
+  [40/41] Compiling NIOPosix BSDSocketAPICommon.swift
+  remark: Incremental compilation has been disabled: it is not compatible with whole module optimization
+  [42/43] Compiling NIO Exports.swift
+  remark: Incremental compilation has been disabled: it is not compatible with whole module optimization
+  remark: Incremental compilation has been disabled: it is not compatible with whole module optimization
+  [44/46] Compiling NIOHTTP1 ByteCollectionUtils.swift
+  remark: Incremental compilation has been disabled: it is not compatible with whole module optimization
+  [46/48] Compiling AWSLambdaRuntimeCore ControlPlaneRequest.swift
+  [48/49] Compiling NIOFoundationCompat ByteBuffer-foundation.swift
+  remark: Incremental compilation has been disabled: it is not compatible with whole module optimization
+  [50/51] Compiling AWSLambdaRuntime Context+Foundation.swift
+  remark: Incremental compilation has been disabled: it is not compatible with whole module optimization
+  [52/53] Compiling MyLambda MyLambda.swift
+/workspace/Sources/MyLambda/MyLambda.swift:20:17: error: cannot find 'NSFileCoordinator' in scope
+        let _ = NSFileCoordinator()
+                ^~~~~~~~~~~~~~~~~
+error: /usr/local/bin/docker run --rm -v /Users/darylteo/Workspaces/sandbox/repro-swift-lambda-nsfilecoordinator:/workspace -w /workspace swift:amazonlinux2 bash -cl swift build -c release --product MyLambda --static-swift-stdlib failed with code 1
+➜  ~/Workspaces/sandbox/repro-swift-lambda-nsfilecoordinator
+```
